@@ -1,14 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
 func main() {
+	runtime.GOMAXPROCS(0)
+
 	quitSignal := make(chan int)
 
 	greetings := "hello"
 	for i := 0; i < 1000; i++ {
 		go func(i int, signal chan int) {
-            fmt.Printf("%s from goroutine          number %d\n", greetings, i)
+			fmt.Printf("%s from goroutine          number %d\n", greetings, i)
 			signal <- 1
 		}(i, quitSignal)
 	}

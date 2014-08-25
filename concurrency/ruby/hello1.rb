@@ -14,4 +14,4 @@ threads = []
 end
 
 # wait for all thread finishes
-threads.each &:joni
+threads.each &:join

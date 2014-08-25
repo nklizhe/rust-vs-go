@@ -1,7 +1,8 @@
 count = 0
+threads = []
 
 1000.times do |i|
-  Thread.new do
+   threads << Thread.new do
     greeting_message = "Hello"
 
     # This is weird in Ruby but it's closer to the println! macro
@@ -13,6 +14,4 @@ count = 0
 end
 
 # wait for all thread finishes
-while count < 1000 do
-    # do nothing
-  end
+threads.each &:join
